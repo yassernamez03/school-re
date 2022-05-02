@@ -1,5 +1,3 @@
-import email
-from unicodedata import name
 from dbclass import app,Role,User,db
 from flask import redirect, render_template, session, url_for
 from classes import Login,Signup
@@ -23,14 +21,9 @@ def login():
         else:
             session['user'] = name
             return redirect(url_for('/'))
-    return render_template('login.html')
+    return render_template('login.html',form=form)
 
-@app.route('/logout')
-def logout():
-    if "user" in session :
-        session.pop("user")
-    return redirect(url_for('/'))  
-    
+
 @app.route('/signup')
 def signup():
     form = Signup()
@@ -41,7 +34,12 @@ def signup():
         return redirect(url_for('login'))
     return render_template("signup.html",form=form)
 
-
+@app.route('/logout')
+def logout():
+    if "user" in session :
+        session.pop("user")
+    return redirect(url_for('/'))  
+    
 
 
 

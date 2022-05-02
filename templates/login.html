@@ -1,0 +1,6 @@
+{% extends 'base.html'%}
+{% block login %}
+<form action="login" method="post">
+    {{ form.hedden.tag()}} {{ form.name.label()}} {{ form.name() }} {{form.password.label()}} {{form.password()}}
+</form>
+ {%endblock %}
